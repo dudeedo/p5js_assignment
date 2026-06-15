@@ -1,0 +1,129 @@
+/* 기본 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 60px 24px;
+  /* 밝고 화사한 메쉬 느낌의 그라데이션 배경 */
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%), 
+              radial-gradient(circle at 15% 50%, rgba(200, 240, 255, 0.4), transparent 50%),
+              radial-gradient(circle at 85% 30%, rgba(255, 230, 240, 0.4), transparent 50%);
+  background-blend-mode: multiply;
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+/* 제목 스타일링 */
+header {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeInDown 0.8s ease backwards;
+}
+
+header h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  /* 텍스트 그라데이션 */
+  background: linear-gradient(90deg, #ff758c 0%, #ff7eb3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+header p {
+  color: #555;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+/* 2x2 그리드 레이아웃 */
+#projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 960px;
+  gap: 40px;
+}
+
+/* 글래스모피즘 카드 디자인 */
+.card {
+  background: rgba(255, 255, 255, 0.5); /* 반투명 배경 */
+  backdrop-filter: blur(12px); /* 블러 효과 */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6); /* 빛 반사 느낌 테두리 */
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.07); /* 부드러운 그림자 */
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  
+  /* 등장 애니메이션 */
+  animation: fadeInUp 0.8s ease backwards;
+}
+
+/* 카드 순차 등장 딜레이 */
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+
+/* 호버 시 떠오르는 효과 강조 */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(31, 38, 135, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.card-header {
+  background: rgba(255, 255, 255, 0.3); /* 헤더도 반투명하게 */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  color: #444;
+  padding: 16px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* iframe 컨테이너 */
+.cell {
+  aspect-ratio: 3 / 2;
+  position: relative;
+  overflow: hidden;
+  background: transparent; /* 로딩 전 배경 투명도 유지 */
+}
+
+/* iframe 설정 */
+.cell iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* 등장 애니메이션 키프레임 */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  #projects {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
